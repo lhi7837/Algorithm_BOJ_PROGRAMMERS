@@ -8,7 +8,6 @@ class Solution {
             int cnt = map.containsKey(i) ? map.get(i) + 1 : 1;
             map.put(i, cnt);
         }
-        List<Integer> list = new ArrayList<>();
         // 10,000,000
         PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
         for(int key : map.keySet()) {
