@@ -20,7 +20,6 @@ public class Main {
         visited = new boolean[N];
 
         dfs(0);
-        sb.delete(sb.lastIndexOf("\n"),sb.lastIndexOf("\n") + 1);
         System.out.println(sb);
     }
 
