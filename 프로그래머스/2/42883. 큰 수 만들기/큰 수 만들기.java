@@ -1,22 +1,26 @@
 import java.util.*;
+
 class Solution {
     public String solution(String number, int k) {
-        String answer = "";
-        StringBuilder sb = new StringBuilder();
-        char[] arr = number.toCharArray();
-        int len = arr.length - k;
-        int start = 0;
-        for(int i = 0; i < len; i++) {
-            char max = '0';
-            for(int j = start; j <= i + k; j++) {
-                if(arr[j] > max) {
-                    max = arr[j];
-                    start = j + 1;
-                }
+        Stack<Character> stack = new Stack<>();
+        int cnt = 0;
+        for(char c : number.toCharArray()) {
+            // System.out.println("--- " + c + " ---");
+            while(!stack.isEmpty() && stack.peek() < c && cnt < k) {
+                cnt++;
+                // System.out.println(stack.peek() + " > 빠짐");
+                stack.pop();
             }
-            sb.append(Character.toString(max));
+            stack.push(c);
+            // System.out.println(stack.peek() + " < 들어감");
         }
-        answer = sb.toString();
-        return answer;
+        while(number.length() - stack.size() != k) {
+            stack.pop();
+        }
+        StringBuilder sb = new StringBuilder();
+        for(char c : stack) {
+            sb.append(c);
+        }
+        return sb.toString();
     }
 }
